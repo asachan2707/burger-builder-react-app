@@ -35,7 +35,6 @@ class BurgerBuilder extends Component {
         const oldPrice = this.state.totalPrice;
         const newPrice = oldPrice + priceAddition;
         this.setState({ totalPrice: newPrice, ingredients: updatedIngredients });
-        console.log('oldCount:: ', oldCount, this.state.ingredients);
     }
 
     removeIngredientHandler = (type) => {
@@ -50,16 +49,23 @@ class BurgerBuilder extends Component {
         const oldPrice = this.state.totalPrice;
         const newPrice = oldPrice - priceAddition;
         this.setState({ totalPrice: newPrice, ingredients: updatedIngredients });
-        console.log('oldCount:: ', oldCount, this.state.ingredients);
     }
 
     render() {
+        // create the ingredients object in immutable way.
+        const disabledInfo = {
+            ...this.state.ingredients
+        }
+        for (let key in disabledInfo) {
+            disabledInfo[key] = disabledInfo[key] <= 0;
+        }
         return (
             <Aux>
                 <Burger ingredients={this.state.ingredients} />
                 <BuildControls
                     ingredientAdded={this.addIngredientHandler}
-                    ingredientremoved={this.removeIngredientHandler}/>
+                    ingredientremoved={this.removeIngredientHandler}
+                    disabled={disabledInfo}/>
             </Aux>
         );
     }
