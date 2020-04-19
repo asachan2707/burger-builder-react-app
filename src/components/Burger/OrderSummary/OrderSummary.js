@@ -4,7 +4,7 @@ import Aux from '../../../hoc/Auxilliry';
 import Button from '../../UI/Button/Button';
 
 class OrderSummary extends Component {
-
+    // this component should be functional component. No lifecycle method used.
     componentWillUpdate() {
         console.log('OrderSummary:: componentWillUpdate');
     }
