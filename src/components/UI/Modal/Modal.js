@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
+
 import classes from './Modal.css';
-import Aux from '../../../hoc/Auxilliry';
+import Aux from '../../../hoc/Auxilliry/Auxilliry';
 import Backdrop from '../Backdrop/Backdrop';
 
 class Modal extends Component {
 
-    shouldComponentUpdate(nextProp, nextState) {
-        return nextProp.show !== this.props.show;
+    shouldComponentUpdate ( nextProps, nextState ) {
+        return nextProps.show !== this.props.show;
     }
 
-    // if shouldComponentUpdate retruns FALSE then this colmponent won't re-render.
-    componentWillUpdate() { }
+    componentWillUpdate () {
+        console.log('[Modal] WillUpdate');
+    }
 
-    render() {
+    render () {
         return (
             <Aux>
                 <Backdrop show={this.props.show} clicked={this.props.modalClosed} />
@@ -25,7 +27,8 @@ class Modal extends Component {
                     {this.props.children}
                 </div>
             </Aux>
-        );
+        )
     }
 }
+
 export default Modal;
